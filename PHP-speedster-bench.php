@@ -17,7 +17,7 @@ if(isset($_SESSION['action']) && $_SESSION['action'] == "run"){
 						location.reload();
 					}, 2000);
 				</script>";
-				$startTime = microtime(true);
+				$startTime = hrtime(true);
 $numbers = array();
 for ($i = 0; $i < 1000000; $i++) {
     $numbers[] = rand(1, 100);
@@ -38,8 +38,8 @@ foreach ($results as $result) {
 }
 fclose($handle);
 
-$endTime = microtime(true);
-$elapsedTime = $endTime - $startTime;
+$endTime = hrtime(true);
+$elapsedTime = ($endTime - $startTime) / 1e+9;
 
 $_SESSION['benchmarks'][] = array(
     'date' => date('Y-m-d H:i:s'),
